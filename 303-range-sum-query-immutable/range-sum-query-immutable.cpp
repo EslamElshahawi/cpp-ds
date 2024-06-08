@@ -1,20 +1,17 @@
 class NumArray {
 private:
-    vector<int> nums;
+    vector<int> preSum;
 
 public:
-    NumArray(vector<int>& nums) {
-        this->nums = nums;
+    NumArray(vector<int>& nums) : preSum(nums) {
+        for(int i = 1; i < preSum.size(); i++){
+            preSum[i] += preSum[i-1];
+        }
     }
     
     int sumRange(int left, int right) {
-        long long ans = 0;
-
-        for(int i = left; i <= right; i++){
-            ans += nums[i];
-        }
-
-        return ans;
+        if(left == 0) return preSum[right];
+        return preSum[right] - preSum[left - 1];
     }
 };
 
