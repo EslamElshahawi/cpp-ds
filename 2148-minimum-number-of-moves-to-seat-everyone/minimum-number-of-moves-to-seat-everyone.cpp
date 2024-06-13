@@ -7,7 +7,7 @@ public:
         sort(students.begin(), students.end());
 
         for(int i = 0; i < seats.size(); i++){
-            moves += max(students[i], seats[i]) - min(seats[i], students[i]);
+            moves += abs(seats[i] - students[i]);
         }
         return moves;
     }
